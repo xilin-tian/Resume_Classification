@@ -31,7 +31,7 @@ def skills_to_doc(skills: list) -> str:
     return lst_of_string
 
 
-def stringfied_list_to_doc(skills: str) -> str:
+def stringified_list_to_doc(skills: str) -> str:
     a = re.sub(r'\'', '', skills)
     b = re.sub(r'\[|\]', '',a)
     c = re.split(r"[,]\s*", b)
