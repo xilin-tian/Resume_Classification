@@ -43,7 +43,7 @@ def find_resumes(skills: list, resume: pd.DataFrame, max_matches: int) -> pd.Dat
     eg = skills_to_doc(skills)
     for i in range(resume.shape[0]):
         x = skills_to_doc(resume['skills'].loc[i])
-        if len(x) == 0:
+        if len(x) == 0 or len(eg) == 0:
             nlp_score = 0
         else:
             nlp_score = nlp(x).similarity(nlp(eg))
