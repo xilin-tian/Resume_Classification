@@ -25,7 +25,9 @@ def parse_skills(resume):
     return subset
 
 def skills_to_doc(skills: list):
-    lst_of_string =  ' '.join(str(e) for e in skills)
+    lower_case_skills = (map(lambda x: x.lower(), skills))
+    sort_skills = sorted(lower_case_skills)
+    lst_of_string =  ' '.join(str(e) for e in sort_skills)
     return lst_of_string
 
 
@@ -41,7 +43,10 @@ def find_resumes(skills, resume, max_matches):
     eg = skills_to_doc(skills)
     for i in range(resume.shape[0]):
         x = skills_to_doc(resume['skills'].loc[i])
-        nlp_score = nlp(x).similarity(nlp(eg))
+        if len(x) == 0:
+            nlp_score = 0
+        else:
+            nlp_score = nlp(x).similarity(nlp(eg))
         similarity_score.append(nlp_score)
     append_resume['Similarity'] = similarity_score
     append_resume = append_resume.sort_values(by=['Similarity'], ascending=False)
