@@ -12,7 +12,7 @@ from spacy.pipeline import EntityRuler
 ruler = nlp.add_pipe("entity_ruler", name="ruler", before="ner")
 ruler.from_disk("jz_skill_patterns.jsonl")
 
-def parse_skills(resume):
+def parse_skills(resume: str) -> list:
     doc = nlp(resume)
     myset = []
     subset = []
@@ -24,20 +24,20 @@ def parse_skills(resume):
     subset.sort()
     return subset
 
-def skills_to_doc(skills: list):
+def skills_to_doc(skills: list) -> str:
     lower_case_skills = (map(lambda x: x.lower(), skills))
     sort_skills = sorted(lower_case_skills)
     lst_of_string =  ' '.join(str(e) for e in sort_skills)
     return lst_of_string
 
 
-def stringfied_list_to_doc(skills: str):
+def stringfied_list_to_doc(skills: str) -> str:
     a = re.sub(r'\'', '', skills)
     b = re.sub(r'\[|\]', '',a)
     c = re.split(r"[,]\s*", b)
     return skills_to_doc(c)
 
-def find_resumes(skills, resume, max_matches):
+def find_resumes(skills: list, resume: pd.DataFrame, max_matches: int) -> pd.DataFrame:
     similarity_score= []
     append_resume = resume
     eg = skills_to_doc(skills)
@@ -50,7 +50,4 @@ def find_resumes(skills, resume, max_matches):
         similarity_score.append(nlp_score)
     append_resume['Similarity'] = similarity_score
     append_resume = append_resume.sort_values(by=['Similarity'], ascending=False)
-    # append_resume = append_resume.drop(columns=['Resume'])
-    # sample_row = pd.DataFrame({'ID':'Sample resume', 'Category':'Need to define', 'skills':eg},index =[0])
-    # appended_resume = pd.concat([sample_row, append_resume])
     return append_resume.head(max_matches)
