@@ -7,7 +7,7 @@
 
 <li>Simple match and machine learning</li>
 
-> Use dice similarity and machine learning to find the matching resume and classify them.
+> Use [Sørensen–Dice coefficient](https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient) and machine learning to find the matching resume and classify them.
 
 <li>NLP and Spacy</li>
 
