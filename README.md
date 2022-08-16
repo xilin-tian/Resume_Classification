@@ -33,7 +33,7 @@ Used [Elbow Method with Within-Cluster-Sum of Squared Error](https://en.wikipedi
 ### 7.[Functions](https://github.com/xilin-tian/Resume_Classification/blob/main/jupyter%20notebook/Functions.ipynb)
 Combined the code that I wrote before and created as a list of functions: parse skills, find match resume, and parse the University. Parsed the code to VS code.
 
-## VS CODE
+# Create a package
 ### [Recommend Profiles](https://github.com/xilin-tian/Resume_Classification/tree/main/recommend_profiles)
 Parsed out the functions and named it as recommend_profiles.py, then created __init__.py to make it as a package. Wrote corrosponding API and pytest of that package.
 </ol>
