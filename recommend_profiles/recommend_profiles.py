@@ -8,21 +8,17 @@ warnings.filterwarnings('ignore')
 
 nlp = spacy.load('en_core_web_md')
 
+
 from spacy.pipeline import EntityRuler
 ruler = nlp.add_pipe("entity_ruler", name="ruler", before="ner")
 ruler.from_disk("jz_skill_patterns.jsonl")
 
 def parse_skills(resume: str) -> list:
     doc = nlp(resume)
-    myset = []
-    subset = []
-    for ent in doc.ents:
-        if ent.label_ == "SKILL":
-            subset.append(ent.text.lower())
-    myset.append(subset)
-    subset = list(set(subset))
-    subset.sort()
-    return subset
+    skills = [entity.text.lower() for entity in doc.ents if entity.label_ == "SKILL"]
+    skills = list(set(skills))
+    skills.sort()
+    return skills
 
 def skills_to_doc(skills: list) -> str:
     lower_case_skills = (map(lambda x: x.lower(), skills))
@@ -51,3 +47,14 @@ def find_resumes(skills: list, resume: pd.DataFrame, max_matches: int) -> pd.Dat
     append_resume['Similarity'] = similarity_score
     append_resume = append_resume.sort_values(by=['Similarity'], ascending=False)
     return append_resume.head(max_matches)
+
+def university_parser(doc: str) -> list:
+    tokenized_doc = nlp(doc)
+    ORG_list = [ent.text for ent in tokenized_doc.ents if ent.label_ == "ORG"]
+    lst = ["university","University","UNIVERSITY","institude","Institude","INSTITUDE","college","College","COLLEGE"]
+    university = []
+    for org in ORG_list:
+        for word in lst:
+            if word in org:
+                university.append(org)
+    return university
