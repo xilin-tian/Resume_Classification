@@ -35,5 +35,5 @@ Combined the code that I wrote before and created as a list of functions: parse 
 
 ## VS CODE
 ### [Recommend Profiles](https://github.com/xilin-tian/Resume_Classification/tree/main/recommend_profiles)
-Parsed the functions out and named it as recommend.py, then created __init__.py to make it as a package. Wrote corrosponding API and pytest of that package.
+Parsed out the functions and named it as recommend_profiles.py, then created __init__.py to make it as a package. Wrote corrosponding API and pytest of that package.
 </ol>
