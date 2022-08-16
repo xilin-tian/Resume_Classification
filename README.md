@@ -28,7 +28,7 @@ Used a jsonl file from [jobzilla](https://github.com/kingabzpro/jobzilla_ai/blob
 Choosed a random resume as the sample, then used Sørensen–Dice coefficient and spacy.similarity to get the table that contained the similarity score with a descending list so that it is clear to see which resume in the dataset has the best match to the sample resume.
 
 ### 6.[Classification Through Skills](https://github.com/xilin-tian/Resume_Classification/blob/main/jupyter%20notebook/CLASSIFICATION_THROUGH_SKILLS.ipynb)
-Used [Elbow Method with Within-Cluster-Sum of Squared Error (WCSS)](https://en.wikipedia.org/wiki/Elbow_method_(clustering) and [Silhouette (clustering)](https://en.wikipedia.org/wiki/Silhouette_(clustering) to testify the appropriate k value for k-mean clustering, both of the methods showed that 30 is the suitable value which is matched the origional numbers of category in the resume dataset.
+Used [Elbow Method with Within-Cluster-Sum of Squared Error](https://en.wikipedia.org/wiki/Elbow_method_(clustering)) and [Silhouette](https://en.wikipedia.org/wiki/Silhouette_(clustering)) to testify the appropriate k value for k-mean clustering, both of the methods showed that 30 is the suitable value which is matched the origional numbers of category in the resume dataset.
 
 ### 7.[Functions](https://github.com/xilin-tian/Resume_Classification/blob/main/jupyter%20notebook/Functions.ipynb)
 Combined the code that I wrote before and created as a list of functions: parse skills, find match resume, and parse the University. Parsed the code to VS code.
