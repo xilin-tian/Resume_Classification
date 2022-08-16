@@ -1,35 +1,64 @@
 from fastapi import FastAPI
 import pandas as pd
+from typing import List
 from recommend_profiles import parse_skills
+from model import Resume, Specialization, TimeZone
 
 app = FastAPI()
 
+
 @app.get("/parse_skills/{resume}")
+# Extract the skills as an output of list of strings from the input(string)
 def extract_skills(resume: str):
     return parse_skills(resume)
 
-@app.get("/parse_skills2/")
-def extract_skills(resume: list):
-    return parse_skills(resume)
 
-from pydantic import BaseModel
-from typing import Union
-
-class Item(BaseModel):
-    Name: str
-    skills: str
-    description: Union[str, None] = None
-    #tax: Union[float, None] = None
-
-@app.post("/items/")
-def create_item(item: Item):
-    return item
-
-from recommend_profiles import skills_to_doc
 
 from recommend_profiles import find_resumes
 
-sample_resume = pd.DataFrame({'ID':[1,2], 'Category':['HR','HR'],'skills':[['python'],[]]})
+sample_resume = pd.DataFrame({'profile_id':[1,2], 'name':['Tom','Jerry'],'skills':[['python'],[]]})
+
+# Original Database with profile_id: int, 
+#                        name: str, 
+#                        skills: list of strings, 
+#                        specialization: Digital marketing/Machine learning/UX Design
+#                        location: str,
+#                        timezone: HST or HDT/AKST or AKDT/PST or PDT/MST or MDT/CST or CDT/EST or EDT/NST or NDT/AST or ADT
+#                        position: str,
+#                        about: str, imported class[Resume] from model.py 
+db : List[Resume]  = [
+    Resume(
+        profile_id = 1, 
+        name = "Tom", 
+        skills = ["python"], 
+        specialization= Specialization.Machine_learning,
+        location= "LA",
+        timezone = TimeZone.PST_PDT,
+        position = "Data analyst",
+        about = 'Tom knows Python'
+        ),
+    Resume(
+        profile_id = 2, 
+        name = "Jerry", 
+        skills = ["python"], 
+        specialization= Specialization.Machine_learning,
+        timezone = TimeZone.PST_PDT,
+        about = 'Jerry knows nothing'
+        )
+]
+
+@app.get("/users/")
+# showing the database
+def fetch_users():
+    return db
+
+
+@app.post("/users/")
+# Add new users to the origional database.
+def register_user(user: Resume):
+    db.append(user)
+    return db
+
 
 @app.get("/find_resumes/{skills}/{max_matches}")
 def find_match_resumes(skills: str, max_matches: int):
