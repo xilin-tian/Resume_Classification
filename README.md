@@ -1,6 +1,6 @@
 # Introduction
 
-This project is focus on classifying and extracting skills from the resume dataset provided by [Marti Palan](https://www.kaggle.com/datasets/maitrip/resumes) and [Hend Labib](https://www.kaggle.com/code/hendlabib12/resume-extraction/data)from kaggle.
+This project is focus on classifying and extracting skills from the resume dataset provided by [Marti Palan](https://www.kaggle.com/datasets/maitrip/resumes) and [Hend Labib](https://www.kaggle.com/code/hendlabib12/resume-extraction/data)from kaggle. This context is a internship project but use public dataset instead.
 
 ## JUPYTER NOTEBOOK
 
