@@ -7,11 +7,11 @@
 
 <li>Simple match and machine learning</li>
 
-> Use dice similarity and machine learning to find the matching resume and classify them.
+> Use [Sørensen–Dice coefficient](https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient) and machine learning to find the matching resume and classify them.
 
-<li>NLP and Spacy</li>
+<li>NLP and [spaCy](https://en.wikipedia.org/wiki/SpaCy)</li>
 
-> Use spacy and re to clean the Resume dataset further（Remove stopwords and \\n）then find the similarity score.
+> Use spacy and [regex](https://en.wikipedia.org/wiki/Regular_expression) to clean the Resume dataset further（Remove stopwords and \\n）then find the similarity score.
 
 <li>Extract skills</li>
 
